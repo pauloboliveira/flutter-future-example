@@ -1,6 +1,7 @@
-import 'package:future_example/domain/conta.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'conta.dart';
 
 class ContaApi {
   static Future<Conta> getConta() async {
