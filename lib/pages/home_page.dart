@@ -28,7 +28,18 @@ class _HomePageState extends State<HomePage> {
       periodo = 'Boa noite';
     }
 
-    return Container(
+    return FutureBuilder(
+      future: future,
+      builder: (context, snapshot) {
+        Conta conta = snapshot.data;
+
+        return _body(conta);
+      },
+    );
+  }
+
+  _body(conta) {
+    Container(
       padding: const EdgeInsets.only(left: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Text(
-                'Paulo!',
+                '${conta.nome}',
                 style: GoogleFonts.raleway(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -67,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          'Seu saldo: ',
+                          '${conta.saldo}',
                           style: GoogleFonts.raleway(
                             color: Colors.white,
                             fontSize: 20,
