@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:future_example/conta/conta.dart';
+import 'package:future_example/conta/conta_api.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -13,6 +15,8 @@ class _HomePageState extends State<HomePage> {
   var horaAtual = new TimeOfDay.now();
 
   var periodo;
+
+  Future<Conta> future = ContaApi.getConta();
 
   @override
   Widget build(BuildContext context) {
