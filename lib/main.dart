@@ -10,20 +10,48 @@ void main() {
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  SplashScreen createState() => SplashScreen();
 }
 
-class _MyAppState extends State<MyApp> {
+class SplashScreen extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    delay();
+  }
+
+  Future<void> delay() async {
+    Future.delayed(
+      Duration(
+        seconds: 5,
+      ),
+      () {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(pageBuilder: (
+            BuildContext context,
+            Animation animation,
+            Animation secondaryAnimation,
+          ) {
+            return HomePage();
+          }),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HomePage(),
       backgroundColor: Colors.indigo,
+      body: Center(
+        child: Image.asset(
+          "assets/images/logo_bank.png",
+          height: 80,
+          width: 80,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

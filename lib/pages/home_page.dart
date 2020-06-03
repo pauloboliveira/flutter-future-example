@@ -32,8 +32,16 @@ class _HomePageState extends State<HomePage> {
       future: future,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(backgroundColor: Colors.indigo),
+          return Container(
+            color: Colors.indigo,
+            child: Center(
+              child: Image.asset(
+                "assets/images/logo_bank.png",
+                height: 80,
+                width: 80,
+                color: Colors.white,
+              ),
+            ),
           );
         }
 
@@ -46,6 +54,7 @@ class _HomePageState extends State<HomePage> {
 
   _body(conta) {
     return Container(
+      color: Colors.indigo,
       padding: const EdgeInsets.only(left: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Text(
-                conta.nome == null ? 0 : '${conta.nome}',
+                conta.nome == null ? 0 : '${conta.nome}!',
                 style: GoogleFonts.raleway(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -122,7 +131,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         showMoney
                             ? Text.rich(
-                                TextSpan(text: conta.saldo == null ? 0 : '200,00'),
+                                TextSpan(
+                                    text: conta.saldo == null ? 0 : '200,00'),
                                 style: GoogleFonts.roboto(
                                     fontSize: 30, color: Colors.white),
                               )
