@@ -7,8 +7,10 @@ class ContaApi {
 
 
   static Future<Conta> getConta() async {
+
+    await Future.delayed(Duration(seconds: 3));
     try {
-      var url = "http://localhost:8080/conta/1";
+      var url = "http://172.16.8.38:8080/conta/1";
 
       var response = await http.get(url);
 

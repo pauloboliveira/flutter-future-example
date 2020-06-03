@@ -2,7 +2,7 @@ class Conta {
   
   int id;
   String nome;
-  int saldo;
+  double saldo;
 
   Conta({this.id, this.nome, this.saldo});
 

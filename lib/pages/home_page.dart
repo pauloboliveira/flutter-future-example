@@ -16,10 +16,10 @@ class _HomePageState extends State<HomePage> {
 
   var periodo;
 
-  Future<Conta> future = ContaApi.getConta();
-
   @override
   Widget build(BuildContext context) {
+    Future<Conta> future = ContaApi.getConta();
+
     if (horaAtual.hour >= 0 && horaAtual.hour < 12) {
       periodo = 'Bom dia';
     } else if (horaAtual.hour > 12 && horaAtual.hour < 18) {
@@ -31,6 +31,12 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: future,
       builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(backgroundColor: Colors.indigo),
+          );
+        }
+
         Conta conta = snapshot.data;
 
         return _body(conta);
@@ -39,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _body(conta) {
-    Container(
+    return Container(
       padding: const EdgeInsets.only(left: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Text(
-                '${conta.nome}',
+                conta.nome == null ? 0 : '${conta.nome}',
                 style: GoogleFonts.raleway(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -78,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          '${conta.saldo}',
+                          'Seu saldo:',
                           style: GoogleFonts.raleway(
                             color: Colors.white,
                             fontSize: 20,
@@ -116,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         showMoney
                             ? Text.rich(
-                                TextSpan(text: '200,00'),
+                                TextSpan(text: conta.saldo == null ? 0 : '200,00'),
                                 style: GoogleFonts.roboto(
                                     fontSize: 30, color: Colors.white),
                               )
