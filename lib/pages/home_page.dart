@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
 
     if (horaAtual.hour >= 0 && horaAtual.hour < 12) {
       periodo = 'Bom dia';
-    } else if (horaAtual.hour > 12 && horaAtual.hour < 18) {
+    } else if (horaAtual.hour >= 12 && horaAtual.hour < 18) {
       periodo = 'Boa tarde';
     } else {
       periodo = 'Boa noite';
